@@ -1,0 +1,1 @@
+# DiplomaProject [![Build status](https://ci.appveyor.com/api/projects/status/rua68uc8oa3be06k?svg=true)](https://ci.appveyor.com/project/Elena-63/diplomaproject)
