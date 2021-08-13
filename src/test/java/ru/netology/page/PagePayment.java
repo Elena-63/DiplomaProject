@@ -80,29 +80,29 @@ public class PagePayment {
 
     public void waitSuccessMessage() {
 
-        successMessage.waitUntil(Condition.visible, 15000);
+        successMessage.waitUntil(Condition.visible, 20000);
     }
 
     public void waitErrorMessage() {
 
-        errorMessage.waitUntil(Condition.visible, 15000);
+        errorMessage.waitUntil(Condition.visible, 20000);
     }
 
     public void waitErrorMessageAboutWrongFormat() {
 
-        errorMessageAboutWrongFormat.waitUntil(Condition.visible, 5000);
+        errorMessageAboutWrongFormat.waitUntil(Condition.visible, 10000);
     }
 
     public void waitErrorMessageAboutWrongDateOfExpiry() {
-        errorMessageAboutWrongDateOfExpiry.waitUntil(Condition.visible, 5000);
+        errorMessageAboutWrongDateOfExpiry.waitUntil(Condition.visible, 10000);
     }
 
     public void waitErrorMessageWithDateOfExpiry() {
 
-        errorMessageWithDateOfExpiry.waitUntil(Condition.visible, 5000);
+        errorMessageWithDateOfExpiry.waitUntil(Condition.visible, 10000);
     }
 
     public void waitErrorMessageBecauseOfEmptyField() {
-        errorMessageBecauseOfEmptyField.waitUntil(Condition.visible, 10000);
+        errorMessageBecauseOfEmptyField.waitUntil(Condition.visible, 15000);
     }
 }
