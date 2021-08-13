@@ -33,29 +33,29 @@ public class PayOnCreditTest {
         SQLHelper.shouldDeleteAfterPayment();
     }
 
-    @Test
-    @DisplayName("Покупка с APPROVED картой")
-    void shouldBuySuccessfullyWithApprovedCard() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var number = DataHelper.getApprovedCardNumber();
-        buyWithCreditPage.withCardNumber(number);
-        buyWithCreditPage.waitSuccessMessage();
-        var paymentWithCreditInfo = SQLHelper.getPaymentWithCreditInfo();
-        assertEquals("APPROVED", paymentWithCreditInfo.getStatus());
-    }
-
-    @Test
-    @DisplayName("Покупка с DECLINED картой")
-    void shouldNotSellWithDeclinedCard() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var number = DataHelper.getDeclinedCardNumber();
-        buyWithCreditPage.withCardNumber(number);
-        buyWithCreditPage.waitErrorMessage();
-        var paymentWithCreditInfo = SQLHelper.getPaymentWithCreditInfo();
-        assertEquals("DECLINED", paymentWithCreditInfo.getStatus());
-    }
+//    @Test
+//    @DisplayName("Покупка с APPROVED картой")
+//    void shouldBuySuccessfullyWithApprovedCard() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var number = DataHelper.getApprovedCardNumber();
+//        buyWithCreditPage.withCardNumber(number);
+//        buyWithCreditPage.waitSuccessMessage();
+//        var paymentWithCreditInfo = SQLHelper.getPaymentWithCreditInfo();
+//        assertEquals("APPROVED", paymentWithCreditInfo.getStatus());
+//    }
+//
+//    @Test
+//    @DisplayName("Покупка с DECLINED картой")
+//    void shouldNotSellWithDeclinedCard() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var number = DataHelper.getDeclinedCardNumber();
+//        buyWithCreditPage.withCardNumber(number);
+//        buyWithCreditPage.waitErrorMessage();
+//        var paymentWithCreditInfo = SQLHelper.getPaymentWithCreditInfo();
+//        assertEquals("DECLINED", paymentWithCreditInfo.getStatus());
+//    }
 
     @Test
     @DisplayName("Отправка пустой формы")
@@ -90,25 +90,25 @@ public class PayOnCreditTest {
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
 
-    @Test
-    @DisplayName("Поле владелец содержит только Фамилию")
-    void shouldNotSellWhenNameOfCardholderIsOnlyLastName() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = DataHelper.getOnlyUsersLastName();
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("Поле владелец содержит только Имя")
-    void shouldNotSellWhenNameOfCardholderIsOnlyFirstName() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = DataHelper.getOnlyUsersFirstName();
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
+//    @Test
+//    @DisplayName("Поле владелец содержит только Фамилию")
+//    void shouldNotSellWhenNameOfCardholderIsOnlyLastName() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = DataHelper.getOnlyUsersLastName();
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("Поле владелец содержит только Имя")
+//    void shouldNotSellWhenNameOfCardholderIsOnlyFirstName() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = DataHelper.getOnlyUsersFirstName();
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
 
     @Test
     @DisplayName("Срок карты истек")
@@ -180,15 +180,15 @@ public class PayOnCreditTest {
         buyWithCreditPage.waitErrorMessageAboutWrongFormat();
     }
 
-    @Test
-    @DisplayName("В поле месяц введено 00")
-    void shouldNotSellWhenMonthNumberIsZeros() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var monthNumber = "00";
-        buyWithCreditPage.withMonth(monthNumber);
-        buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
-    }
+//    @Test
+//    @DisplayName("В поле месяц введено 00")
+//    void shouldNotSellWhenMonthNumberIsZeros() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var monthNumber = "00";
+//        buyWithCreditPage.withMonth(monthNumber);
+//        buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
+//    }
 
     @Test
     @DisplayName("В поле месяц введено одну цифру")
@@ -210,73 +210,73 @@ public class PayOnCreditTest {
         buyWithCreditPage.waitErrorMessageAboutWrongDateOfExpiry();
     }
 
-    @Test
-    @DisplayName("В поле владелец введено одну букву")
-    void shouldNotSellWhenNameOfCardholderIsOnlyOneLetter() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = "L";
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено много букв")
-    void shouldNotSellWhenNameOfCardholderHasLotsOfLetters() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = "IWJDNRYFBSYRHFYTVCPQZMSHRBD TGFJVNCMDKELWOQIAJZNDTMDLMREW";
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено данные строчными буквами")
-    void shouldNotSellWhenNameOfCardholderInLowerCaseLetters() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = DataHelper.getFullUsersNameInLowCaseLetters();
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено данные прописными и строчными буквами")
-    void shouldNotSellWhenNameOfCardholderInUpperCaseAndLowerCaseLetters() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = DataHelper.getFullUsersNameInUpperCaseAndLowCaseLetters();
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено данные на русском языке")
-    void shouldNotSellWhenNameOfCardholderIsInRussian() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = DataHelper.getFullUsersNameInRussian("ru");
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено цифры")
-    void shouldNotSellWhenNameOfCardholderInContainsNumbers() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = "1234567890";
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
-
-    @Test
-    @DisplayName("В поле владелец введено спецсимволы")
-    void shouldNotSellWhenNameOfCardholderInContainsSpecialCharacters() {
-        var startingPage = new StartingPage();
-        var buyWithCreditPage = startingPage.buyWithCredit();
-        var nameOfCardHolder = "!@#$%^&*";
-        buyWithCreditPage.withCardholder(nameOfCardHolder);
-        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
-    }
+//    @Test
+//    @DisplayName("В поле владелец введено одну букву")
+//    void shouldNotSellWhenNameOfCardholderIsOnlyOneLetter() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = "L";
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено много букв")
+//    void shouldNotSellWhenNameOfCardholderHasLotsOfLetters() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = "IWJDNRYFBSYRHFYTVCPQZMSHRBD TGFJVNCMDKELWOQIAJZNDTMDLMREW";
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено данные строчными буквами")
+//    void shouldNotSellWhenNameOfCardholderInLowerCaseLetters() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = DataHelper.getFullUsersNameInLowCaseLetters();
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено данные прописными и строчными буквами")
+//    void shouldNotSellWhenNameOfCardholderInUpperCaseAndLowerCaseLetters() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = DataHelper.getFullUsersNameInUpperCaseAndLowCaseLetters();
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено данные на русском языке")
+//    void shouldNotSellWhenNameOfCardholderIsInRussian() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = DataHelper.getFullUsersNameInRussian("ru");
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено цифры")
+//    void shouldNotSellWhenNameOfCardholderInContainsNumbers() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = "1234567890";
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
+//
+//    @Test
+//    @DisplayName("В поле владелец введено спецсимволы")
+//    void shouldNotSellWhenNameOfCardholderInContainsSpecialCharacters() {
+//        var startingPage = new StartingPage();
+//        var buyWithCreditPage = startingPage.buyWithCredit();
+//        var nameOfCardHolder = "!@#$%^&*";
+//        buyWithCreditPage.withCardholder(nameOfCardHolder);
+//        buyWithCreditPage.waitErrorMessageAboutWrongFormat();
+//    }
 }
