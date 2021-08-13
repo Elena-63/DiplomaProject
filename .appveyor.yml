@@ -17,7 +17,7 @@ install:
   - sudo chmod +x /usr/local/bin/docker-compose
   - sudo docker-compose up -d
   - sleep 20
-  - java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -jar ./artifacts/aqa-shop.jar &
+  - java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -Dspring.datasource.username=app -Dspring.datasource.password=pass -jar ./artifacts/aqa-shop.jar &
 
 build_script:
   - sleep 20
