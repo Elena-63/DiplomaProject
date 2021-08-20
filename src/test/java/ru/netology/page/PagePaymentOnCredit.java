@@ -15,7 +15,7 @@ public class PagePaymentOnCredit {
     private SelenideElement cardNumber = $("[placeholder= '0000 0000 0000 0000']");
     private SelenideElement month = $("[placeholder= '08']");
     private SelenideElement year = $("[placeholder= '22']");
-    private SelenideElement cardholder = $$(".input__control").get(3);
+    private SelenideElement cardholder = $$(".input").find(Condition.exactText("Владелец")).$(".input__control");
     private SelenideElement cardValidationCode = $("[placeholder= '999']");
     private SelenideElement continueButton = $(byText("Продолжить"));
     private SelenideElement successMessage = $(withText("Операция одобрена Банком"));
