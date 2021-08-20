@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PaymentInfoModel {
-    String id;
-    String amount;
-    String created;
-    String status;
-    String transaction_id;
+    private String id;
+    private String amount;
+    private String created;
+    private String status;
+    private String transaction_id;
 }
